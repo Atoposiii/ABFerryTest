@@ -16,6 +16,7 @@ instance_id = None
 class TestFuzzParallel:
     @allure.story("测试入口模块")
     @allure.severity("blocker")
+    @allure.description("创建测试实例")
     @pytest.mark.parametrize("args", test_cases)
     # @pytest.mark.skip(reason="暂时不用")
     @allure.title("测试入口模块相关接口-选择内置源码-创建测试用例")
