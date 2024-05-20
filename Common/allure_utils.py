@@ -19,17 +19,18 @@ class Allure_Results:
                 filepath = os.path.join(allure_results_directory, filename)
                 with open(filepath, 'r') as file:
                     data = json.load(file)
-                    # 状态可以是'passed', 'failed', 'skipped'等
-                    status = data['status']
-                    if status == 'passed':
-                        passed_tests += 1
-                    elif status == 'failed':
-                        failed_tests += 1
-                    elif status == 'skipped':
-                        skipped_tests += 1
-                    elif status == 'broken':
-                        broken_tests += 1
-                    total_tests += 1
+                    if data["description"] == "创建测试实例":
+                        # 状态可以是'passed', 'failed', 'skipped'等
+                        status = data['status']
+                        if status == 'passed':
+                            passed_tests += 1
+                        elif status == 'failed':
+                            failed_tests += 1
+                        elif status == 'skipped':
+                            skipped_tests += 1
+                        elif status == 'broken':
+                            broken_tests += 1
+                        total_tests += 1
 
         return {
             "Total": total_tests,
