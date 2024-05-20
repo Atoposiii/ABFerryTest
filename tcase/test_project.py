@@ -22,7 +22,7 @@ class TestFuzzSequence:
     @allure.story("项目相关接口")
     @allure.issue("http://bug.html")
     @allure.severity("blocker")
-    @allure.description("调用接口创建新项目")
+    @allure.description("创建项目")
     @allure.title("项目相关接口-新建项目")
     @allure.testcase(
         "https://rrtq2022032510560773.pingcode.com/testhub/cases/6614b4fa68119cffbd481b7c?#DMX-1  从前端新建一个测试项目")
@@ -48,7 +48,7 @@ class TestFuzzSequence:
 
     @allure.story("项目相关接口")
     @allure.severity("blocker")
-    @allure.description("测试获取项目列表接口")
+    @allure.description("获取项目列表")
     @allure.title("项目相关接口-项目列表")
     @pytest.mark.dependency(depends=["test_create_project"])
     # @pytest.mark.skip(reason="暂时不用")
