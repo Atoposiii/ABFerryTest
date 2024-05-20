@@ -48,19 +48,13 @@ def push_report(web_hook, timestamp, sign, results):
                         },
                         {
                             "text": {
-                                "content": f'🔔 跳过数量：{results["Skipped"]}\n',
-                                "tag": "lark_md"
-                            }
-                        },
-                        {
-                            "text": {
                                 "content": f'✴️ 中断数量：{results["Broken"]}\n',
                                 "tag": "lark_md"
                             }
                         },
                         {
                             "text": {
-                                "content": f'➡ 通过率：{(results["Passed"] / results["Total"] * 100):.2f}%\n',
+                                "content": f'🤔 覆盖率低于阈值的数量：{results["Coverage"]}%\n',
                                 "tag": "lark_md"
                             }
                         },
@@ -70,7 +64,7 @@ def push_report(web_hook, timestamp, sign, results):
                 {
                     "tag": "div",
                     "text": {
-                        "content": "[查看Allure测试报告](http://192.168.5.163:8080/job/abferry_allure/allure/)",
+                        "content": "[查看Allure测试报告](http://localhost:8080/job/demo/allure/)",
                         "tag": "lark_md"
                     }
                 },
