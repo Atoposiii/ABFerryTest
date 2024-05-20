@@ -1,7 +1,7 @@
 - program_alias: cjson-1.7.15
   case_serial: 1
-  fuzzer_line_covered_rate: 45.13%
-  fuzzer_function_covered_rate: 52.68%
+  fuzzer_line_covered_rate: 41.84%
+  fuzzer_function_covered_rate: 50.00%
   bugs:
     - name: memory-leaks
       location: 243
@@ -22,16 +22,23 @@
 - program_alias: jsonnet
   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
   case_serial: 6
-  fuzzer_line_covered_rate: 72.31%
+  fuzzer_line_covered_rate: 72.13%
   fuzzer_function_covered_rate: 60%
   bugs:
     - name: stack-buffer-overflow
       location: 118
 
 
-#- program_alias: mini
-#  source_code_pkg_path: /opt/case/mini/mini.zip
-#  case_serial: 7
-#  fuzzer_line_covered_rate: 79.81%
-#  fuzzer_function_covered_rate: 87.5%
-#  bug_name:
+- program_alias: re2
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 7
+  fuzzer_line_covered_rate: 76.79%
+  fuzzer_function_covered_rate: 87.01%
+  bugs:
+
+- program_alias: metis
+  source_code_pkg_path: /opt/case/metis/metis.zip
+  case_serial: 8
+  fuzzer_line_covered_rate: 23.93%
+  fuzzer_function_covered_rate: 30.25%
+  bugs:
