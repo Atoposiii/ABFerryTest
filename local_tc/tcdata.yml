@@ -1,10 +1,10 @@
-#- program_alias: cjson-1.7.15
-#  case_serial: 1
-#  fuzzer_line_covered_rate: 45.13%
-#  fuzzer_function_covered_rate: 52.68%
-#  bugs:
-#    - name: memory-leaks
-#      location: 243
+- program_alias: cjson-1.7.15
+  case_serial: 1
+  fuzzer_line_covered_rate: 45.13%
+  fuzzer_function_covered_rate: 52.68%
+  bugs:
+    - name: memory-leaks
+      location: 243
 
 #- program_alias: cpu_features
 #  case_serial: 2
