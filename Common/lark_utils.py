@@ -64,7 +64,7 @@ def push_report(web_hook, timestamp, sign, results):
                 {
                     "tag": "div",
                     "text": {
-                        "content": "[查看Allure测试报告](http://localhost:8080/job/demo/allure/)",
+                        "content": "[查看Allure测试报告](http://192.168.5.163:8080/job/abferry_allure/allure/)",
                         "tag": "lark_md"
                     }
                 },
