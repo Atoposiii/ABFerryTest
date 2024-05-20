@@ -169,5 +169,11 @@ class TestFuzzResultInfo:
         with allure.step("step: 断言bug的类型与定位是否一致"):
             base_bugs = args["bugs"]
             with assume:
-                assert sorted(base_bugs) == sorted(test_bugs)
-                ReportStyle.step("bug的类型与定位", test_bugs)
+                test_bugs = None if not test_bugs else test_bugs
+                if base_bugs is not None and test_bugs is not None:
+                    assert sorted(base_bugs) == sorted(test_bugs)
+                    ReportStyle.step("bug的类型与定位", test_bugs)
+                else:
+                    assert base_bugs == test_bugs
+                    ReportStyle.step("bug的类型与定位", None)
+
