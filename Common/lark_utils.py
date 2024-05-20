@@ -54,7 +54,7 @@ def push_report(web_hook, timestamp, sign, results):
                         },
                         {
                             "text": {
-                                "content": f'🤔 覆盖率低于阈值的数量：{results["Coverage"]}%\n',
+                                "content": f'🤔 覆盖率低于阈值的数量：{results["Coverage"]}\n',
                                 "tag": "lark_md"
                             }
                         },
