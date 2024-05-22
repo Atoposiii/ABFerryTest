@@ -96,7 +96,7 @@ class TestFuzzParallel:
 
         with allure.step("step: 获取用例列表并轮询用例运行状态"):
             # 等用例从等待状态变成运行状态
-            time.sleep(60)
+            time.sleep(60*3)
             url = Config.TestEnv + "/api/instance/getInstanceList"
             params = {'projectId': proj_id}
             state = 1
