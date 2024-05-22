@@ -9,7 +9,7 @@
 #- program_alias: cpu_features
 #  case_serial: 2
 #
-- program_alias: 	sfntly
+- program_alias: sfntly
   source_code_pkg_path: /opt/case/sfntly/sfntly.zip
   case_serial: 3
   fuzzer_line_covered_rate: 72.13%
