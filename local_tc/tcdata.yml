@@ -1,29 +1,38 @@
-- program_alias: cjson-1.7.15
+- program_alias: metis
+  source_code_pkg_path: /opt/case/metis/metis.zip
   case_serial: 1
-  fuzzer_line_covered_rate: 41.84%
-  fuzzer_function_covered_rate: 50.00%
+  fuzzer_line_covered_rate: 23.93%
+  fuzzer_function_covered_rate: 30.25%
   bugs:
-    - name: memory-leaks
-      location: 243
 
-#- program_alias: cpu_features
-#  case_serial: 2
-#
-- program_alias: sfntly
-  source_code_pkg_path: /opt/case/sfntly/sfntly.zip
-  case_serial: 3
-  fuzzer_line_covered_rate: 72.13%
-  fuzzer_function_covered_rate: 60%
+- program_alias: cpu_features
+  source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
+  case_serial: 2
+  fuzzer_line_covered_rate: 53.18%
+  fuzzer_function_covered_rate: 60.47%
   bugs:
-    - name: stack-buffer-overflow
-      location: 118
-#
-#- program_alias: re2
-#  case_serial: 4
-#
-#
-#- program_alias: uriparser
-#  case_serial: 5
+    
+- program_alias: uriparser
+  source_code_pkg_path: /opt/case/uriparser/uriparser.zip
+  case_serial: 3
+  fuzzer_line_covered_rate: 87.40%
+  fuzzer_function_covered_rate: 98.61%
+  bugs:
+
+- program_alias: re2
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 4
+  fuzzer_line_covered_rate: 76.16%
+  fuzzer_function_covered_rate: 86.69%
+  bugs:
+    
+- program_alias: pthreadpool
+  source_code_pkg_path: /opt/case/pthreadpool/pthreadpool.zip
+  case_serial: 5
+  fuzzer_line_covered_rate: 85.03%
+  fuzzer_function_covered_rate: 84.21%
+  bugs:
+
 
 - program_alias: jsonnet
   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
@@ -34,17 +43,13 @@
     - name: stack-buffer-overflow
       location: 118
 
-
-- program_alias: re2
-  source_code_pkg_path: /opt/case/re2/re2.zip
-  case_serial: 7
-  fuzzer_line_covered_rate: 76.79%
-  fuzzer_function_covered_rate: 87.01%
-  bugs:
-
-- program_alias: metis
-  source_code_pkg_path: /opt/case/metis/metis.zip
-  case_serial: 8
-  fuzzer_line_covered_rate: 23.93%
-  fuzzer_function_covered_rate: 30.25%
-  bugs:
+- program_alias: mini
+ source_code_pkg_path: /opt/case/mini/mini.zip
+ case_serial: 7
+ fuzzer_line_covered_rate: 66.37%
+ fuzzer_function_covered_rate: 80.00%
+ bug_name:
+    - name: FPE
+      location: 46
+    - name: heap-use-after-free
+      location: 52
