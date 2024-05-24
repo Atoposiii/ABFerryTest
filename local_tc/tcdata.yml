@@ -1,8 +1,8 @@
 - program_alias: metis
   source_code_pkg_path: /opt/case/metis/metis.zip
   case_serial: 1
-  fuzzer_line_covered_rate: 23.93%
-  fuzzer_function_covered_rate: 30.25%
+  fuzzer_line_covered_rate: 23.36%
+  fuzzer_function_covered_rate: 13.10%
   bugs:
 
 - program_alias: cpu_features
@@ -15,15 +15,15 @@
 - program_alias: uriparser
   source_code_pkg_path: /opt/case/uriparser/uriparser.zip
   case_serial: 3
-  fuzzer_line_covered_rate: 87.40%
-  fuzzer_function_covered_rate: 98.61%
+  fuzzer_line_covered_rate: 90.09%
+  fuzzer_function_covered_rate: 52.59%
   bugs:
 
 - program_alias: re2
   source_code_pkg_path: /opt/case/re2/re2.zip
   case_serial: 4
-  fuzzer_line_covered_rate: 76.16%
-  fuzzer_function_covered_rate: 86.69%
+  fuzzer_line_covered_rate: 75.66%
+  fuzzer_function_covered_rate: 62.53%
   bugs:
 
 - program_alias: pthreadpool
