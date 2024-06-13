@@ -48,11 +48,12 @@
   case_serial: 7
   fuzzer_line_covered_rate: 83.19%
   fuzzer_function_covered_rate: 90.00%
-  bug_name:
+  bugs:
     - name: FPE
       location: 46
     - name: heap-use-after-free
       location: 52
+
 
 # - program_alias: cpuinfo
 #   source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip

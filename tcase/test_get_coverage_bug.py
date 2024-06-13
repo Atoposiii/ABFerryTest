@@ -31,7 +31,7 @@ class TestFuzzResultInfo:
                     ReportStyle.step("测试用例id: ", instance_id)
                     break
 
-        url = Config.TestEnv + "/api/coverages/instanceCoverages"
+        url = Config.TestEnv + "/api/structure/instanceCoverages"
         params = {
             "instanceId": instance_id,
             "type": "project"
