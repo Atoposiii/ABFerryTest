@@ -5,7 +5,7 @@ import requests
 
 
 class Config:
-    TestEnv = "http://192.168.5.163:9081"
+    TestEnv = "http://192.168.5.5:9081"
     RunInJenkins = False
     CaseSet = 0
     TunDur = 3  # 测试实例默认运行3分钟以上
