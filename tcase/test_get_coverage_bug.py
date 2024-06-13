@@ -58,18 +58,18 @@ class TestFuzzResultInfo:
                         "gtest行覆盖": coverage["gtestLineCovered"],
                         "gtest函数覆盖Total": coverage["gtestFunctionTotal"],
                         "gtest函数覆盖": coverage["gtestFunctionCovered"],
-                        "fuzzer行覆盖Total": coverage["fuzzerLineTotal"],
-                        "fuzzer行覆盖": coverage["fuzzerLineCovered"],
-                        "fuzzer函数覆盖Total": coverage["fuzzerFunctionTotal"],
-                        "fuzzer函数覆盖": coverage["fuzzerFunctionCovered"],
+                        "fuzzer行覆盖Total": coverage["abferryLineTotal"],
+                        "fuzzer行覆盖": coverage["abferryLineCovered"],
+                        "fuzzer函数覆盖Total": coverage["abferryFunctionTotal"],
+                        "fuzzer函数覆盖": coverage["abferryFunctionCovered"],
                         "gtest行覆盖率": "{:.2f}%".format(
                             coverage["gtestLineCovered"] / coverage["gtestLineTotal"] * 100),
                         "gtest函数覆盖率": "{:.2f}%".format(
                             coverage["gtestFunctionCovered"] / coverage["gtestFunctionTotal"] * 100),
                         "fuzzer行覆盖率": "{:.2f}%".format(
-                            coverage["fuzzerLineCovered"] / coverage["fuzzerLineTotal"] * 100),
+                            coverage["abferryLineCovered"] / coverage["abferryLineTotal"] * 100),
                         "fuzzer函数覆盖率": "{:.2f}%".format(
-                            coverage["fuzzerFunctionCovered"] / coverage["fuzzerFunctionTotal"] * 100),
+                            coverage["abferryFunctionCovered"] / coverage["abferryFunctionTotal"] * 100),
                     }
             ReportStyle.step("覆盖率: ", stats)
         test_fuzzer_line_covered_rate = float(stats["fuzzer行覆盖率"].split("%")[0])
@@ -168,6 +168,8 @@ class TestFuzzResultInfo:
             ReportStyle.step("BUG数据总览: ", bug_stats)
         with allure.step("step: 断言bug的类型与定位是否一致"):
             base_bugs = args["bugs"]
+            print(base_bugs)
+            print(test_bugs)
             with assume:
                 test_bugs = None if not test_bugs else test_bugs
                 if base_bugs is not None and test_bugs is not None:
