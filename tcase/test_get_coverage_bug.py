@@ -11,6 +11,7 @@ http_client = HttpRequest()
 
 test_cases = Config.get_yaml(Config.get_case_data_dir() + Config.get_case_data_file())
 
+report_data = {}
 
 @allure.feature("ABFerry测试")
 class TestFuzzResultInfo:
@@ -26,6 +27,7 @@ class TestFuzzResultInfo:
             project_info = Config.get_cpp_project_info()
             for project in project_info:
                 name = project["name"][:-10]
+                report_data["用例名"] = name
                 if name == args["program_alias"]:
                     instance_id = project["instance_id"]
                     ReportStyle.step("测试用例id: ", instance_id)
@@ -72,10 +74,23 @@ class TestFuzzResultInfo:
                             coverage["abferryFunctionCovered"] / coverage["abferryFunctionTotal"] * 100),
                     }
             ReportStyle.step("覆盖率: ", stats)
+
+            report_data["代码行"] = stats["gtest行覆盖Total"]
+            report_data["函数个数"] = stats["gtest函数覆盖Total"]
+
+            # 将统计结果合并到报告数据中
+            report_data.update(stats)
+
+        test_gtest_line_covered_rate = float(stats["gtest行覆盖率"].split("%")[0])
+        test_gtest_function_covered_rate = float(stats["gtest函数覆盖率"].split("%")[0])
         test_fuzzer_line_covered_rate = float(stats["fuzzer行覆盖率"].split("%")[0])
         test_fuzzer_function_covered_rate = float(stats["fuzzer函数覆盖率"].split("%")[0])
         base_fuzzer_line_covered_rate = float(args.get("fuzzer_line_covered_rate").split("%")[0])
         base_fuzzer_function_covered_rate = float(args.get("fuzzer_function_covered_rate").split("%")[0])
+
+        report_data["行覆盖提升率"] = "{:.2f}%".format(((test_fuzzer_line_covered_rate - test_gtest_line_covered_rate) / test_gtest_line_covered_rate)*100)
+        report_data["函数覆盖提升率"] = "{:.2f}%".format(((test_fuzzer_function_covered_rate - test_gtest_function_covered_rate) / test_gtest_function_covered_rate)*100)
+
         with ((allure.step("step: 断言函数覆盖率是否正常"))):
             with assume:
                 #
@@ -87,7 +102,6 @@ class TestFuzzResultInfo:
                 #
                 assert test_fuzzer_line_covered_rate >= base_fuzzer_line_covered_rate \
                 or test_fuzzer_line_covered_rate > (base_fuzzer_line_covered_rate - 3)
-
 
     @allure.story("测试入口模块")
     @allure.severity("blocker")
@@ -164,18 +178,46 @@ class TestFuzzResultInfo:
 
             # 更新bug的类型数
             bug_stats["bug类型"] = len(bug_types)
-
+            # 将统计结果合并到报告数据中
+            report_data.update(bug_stats)
+            report_data.update({"bug类型": bug_types})
             ReportStyle.step("BUG数据总览: ", bug_stats)
+
         with allure.step("step: 断言bug的类型与定位是否一致"):
             base_bugs = args["bugs"]
-            print(base_bugs)
-            print(test_bugs)
             with assume:
                 test_bugs = None if not test_bugs else test_bugs
                 if base_bugs is not None and test_bugs is not None:
-                    assert sorted(base_bugs) == sorted(test_bugs)
+                    # 按照 'name' 和 'location' 键排序
+                    sorted_base_bugs = sorted(base_bugs, key=lambda x: (x['name'], x['location']))
+                    sorted_test_bugs = sorted(test_bugs, key=lambda x: (x['name'], x['location']))
+                    assert sorted_base_bugs == sorted_test_bugs
                     ReportStyle.step("bug的类型与定位", test_bugs)
                 else:
                     assert base_bugs == test_bugs
                     ReportStyle.step("bug的类型与定位", None)
+
+    @allure.story("测试入口模块")
+    @allure.severity("blocker")
+    @allure.description("输出报告到csv")
+    @pytest.mark.parametrize("args", test_cases)
+    # @pytest.mark.skip(reason="暂时不用")
+    @allure.title("测试入口模块相关接口-输出报告")
+    def test_report_csv(self, args):
+        print(report_data)
+        import csv
+        from datetime import datetime
+        # 获取当前日期
+        today = datetime.today().strftime('%Y-%m-%d')
+        # 创建CSV文件名
+        filename = f"{today}.csv"
+        # 保存数据到CSV文件
+        with open(filename, 'a', newline='', encoding='utf-8-sig') as csvfile:
+            fieldnames = report_data.keys()
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            writer.writeheader()
+            writer.writerow(report_data)
+
+        print(f"数据已保存到文件 {filename}")
 

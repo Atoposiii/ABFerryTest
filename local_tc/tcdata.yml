@@ -5,12 +5,12 @@
 #   fuzzer_function_covered_rate: 13.10%
 #   bugs:
 
-# - program_alias: cpu_features
-#   source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
-#   case_serial: 2
-#   fuzzer_line_covered_rate: 53.18%
-#   fuzzer_function_covered_rate: 60.47%
-#   bugs:
+ - program_alias: cpu_features
+   source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
+   case_serial: 1
+   fuzzer_line_covered_rate: 53.18%
+   fuzzer_function_covered_rate: 57.78%
+   bugs:
 
 # - program_alias: uriparser
 #   source_code_pkg_path: /opt/case/uriparser/uriparser.zip
@@ -34,25 +34,24 @@
 #   bugs:
 
 
-# - program_alias: jsonnet
-#   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-#   case_serial: 6
-#   fuzzer_line_covered_rate: 72.13%
-#   fuzzer_function_covered_rate: 60%
-#   bugs:
-#     - name: stack-buffer-overflow
-#       location: 118
+ - program_alias: cjson-1.7.15
+   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+   case_serial: 2
+   fuzzer_line_covered_rate: 44.72%
+   fuzzer_function_covered_rate: 50%
+   bugs:
 
-- program_alias: mini
-  source_code_pkg_path: /opt/case/mini/mini.zip
-  case_serial: 7
-  fuzzer_line_covered_rate: 83.19%
-  fuzzer_function_covered_rate: 90.00%
-  bugs:
-    - name: FPE
-      location: 46
-    - name: heap-use-after-free
-      location: 52
+
+ - program_alias: mini
+   source_code_pkg_path: /opt/case/mini/mini.zip
+   case_serial: 3
+   fuzzer_line_covered_rate: 83.19%
+   fuzzer_function_covered_rate: 90.00%
+   bugs:
+      - name: FPE
+        location: 46
+      - name: heap-use-after-free
+        location: 52
 
 
 # - program_alias: cpuinfo
