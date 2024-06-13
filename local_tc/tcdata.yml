@@ -1,62 +1,62 @@
-- program_alias: metis
-  source_code_pkg_path: /opt/case/metis/metis.zip
-  case_serial: 1
-  fuzzer_line_covered_rate: 23.36%
-  fuzzer_function_covered_rate: 13.10%
-  bugs:
+# - program_alias: metis
+#   source_code_pkg_path: /opt/case/metis/metis.zip
+#   case_serial: 1
+#   fuzzer_line_covered_rate: 23.36%
+#   fuzzer_function_covered_rate: 13.10%
+#   bugs:
 
-- program_alias: cpu_features
-  source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
-  case_serial: 2
-  fuzzer_line_covered_rate: 53.18%
-  fuzzer_function_covered_rate: 60.47%
-  bugs:
+# - program_alias: cpu_features
+#   source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
+#   case_serial: 2
+#   fuzzer_line_covered_rate: 53.18%
+#   fuzzer_function_covered_rate: 60.47%
+#   bugs:
 
-- program_alias: uriparser
-  source_code_pkg_path: /opt/case/uriparser/uriparser.zip
-  case_serial: 3
-  fuzzer_line_covered_rate: 90.09%
-  fuzzer_function_covered_rate: 52.59%
-  bugs:
+# - program_alias: uriparser
+#   source_code_pkg_path: /opt/case/uriparser/uriparser.zip
+#   case_serial: 3
+#   fuzzer_line_covered_rate: 90.09%
+#   fuzzer_function_covered_rate: 52.59%
+#   bugs:
 
-- program_alias: re2
-  source_code_pkg_path: /opt/case/re2/re2.zip
-  case_serial: 4
-  fuzzer_line_covered_rate: 75.66%
-  fuzzer_function_covered_rate: 62.53%
-  bugs:
+# - program_alias: re2
+#   source_code_pkg_path: /opt/case/re2/re2.zip
+#   case_serial: 4
+#   fuzzer_line_covered_rate: 75.66%
+#   fuzzer_function_covered_rate: 62.53%
+#   bugs:
 
-- program_alias: pthreadpool
-  source_code_pkg_path: /opt/case/pthreadpool/pthreadpool.zip
-  case_serial: 5
-  fuzzer_line_covered_rate: 85.03%
-  fuzzer_function_covered_rate: 84.21%
-  bugs:
+# - program_alias: pthreadpool
+#   source_code_pkg_path: /opt/case/pthreadpool/pthreadpool.zip
+#   case_serial: 5
+#   fuzzer_line_covered_rate: 85.03%
+#   fuzzer_function_covered_rate: 84.21%
+#   bugs:
 
 
-- program_alias: jsonnet
-  source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-  case_serial: 6
-  fuzzer_line_covered_rate: 72.13%
-  fuzzer_function_covered_rate: 60%
-  bugs:
-    - name: stack-buffer-overflow
-      location: 118
+# - program_alias: jsonnet
+#   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+#   case_serial: 6
+#   fuzzer_line_covered_rate: 72.13%
+#   fuzzer_function_covered_rate: 60%
+#   bugs:
+#     - name: stack-buffer-overflow
+#       location: 118
 
 - program_alias: mini
   source_code_pkg_path: /opt/case/mini/mini.zip
   case_serial: 7
-  fuzzer_line_covered_rate: 66.37%
-  fuzzer_function_covered_rate: 80.00%
+  fuzzer_line_covered_rate: 83.19%
+  fuzzer_function_covered_rate: 90.00%
   bug_name:
     - name: FPE
       location: 46
     - name: heap-use-after-free
       location: 52
 
-- program_alias: cpuinfo
-  source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
-  case_serial: 8
-  fuzzer_line_covered_rate: 38.57%
-  fuzzer_function_covered_rate: 9.84%
-  bug_name:
+# - program_alias: cpuinfo
+#   source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
+#   case_serial: 8
+#   fuzzer_line_covered_rate: 38.57%
+#   fuzzer_function_covered_rate: 9.84%
+#   bug_name:
