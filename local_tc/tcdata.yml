@@ -5,12 +5,12 @@
 #   fuzzer_function_covered_rate: 13.10%
 #   bugs:
 
- - program_alias: cpu_features
-   source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
-   case_serial: 1
-   fuzzer_line_covered_rate: 53.18%
-   fuzzer_function_covered_rate: 57.78%
-   bugs:
+#  - program_alias: cpu_features
+#    source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
+#    case_serial: 1
+#    fuzzer_line_covered_rate: 53.18%
+#    fuzzer_function_covered_rate: 57.78%
+#    bugs:
 
 # - program_alias: uriparser
 #   source_code_pkg_path: /opt/case/uriparser/uriparser.zip
@@ -34,12 +34,12 @@
 #   bugs:
 
 
-#  - program_alias: cjson-1.7.15
-#    source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-#    case_serial: 2
-#    fuzzer_line_covered_rate: 44.72%
-#    fuzzer_function_covered_rate: 50%
-#    bugs:
+ - program_alias: cjson-1.7.15
+   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+   case_serial: 2
+   fuzzer_line_covered_rate: 44.72%
+   fuzzer_function_covered_rate: 50%
+   bugs:
 
 
 #  - program_alias: mini
@@ -54,9 +54,9 @@
 #         location: 52
 
 
-# - program_alias: cpuinfo
-#   source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
-#   case_serial: 8
-#   fuzzer_line_covered_rate: 38.57%
-#   fuzzer_function_covered_rate: 9.84%
-#   bug_name:
+- program_alias: cpuinfo
+  source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
+  case_serial: 8
+  fuzzer_line_covered_rate: 38.57%
+  fuzzer_function_covered_rate: 9.84%
+  bug_name:
