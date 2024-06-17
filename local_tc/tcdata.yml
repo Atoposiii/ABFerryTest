@@ -34,24 +34,24 @@
 #   bugs:
 
 
- - program_alias: cjson-1.7.15
-   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-   case_serial: 2
-   fuzzer_line_covered_rate: 44.72%
-   fuzzer_function_covered_rate: 50%
-   bugs:
+#  - program_alias: cjson-1.7.15
+#    source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+#    case_serial: 2
+#    fuzzer_line_covered_rate: 44.72%
+#    fuzzer_function_covered_rate: 50%
+#    bugs:
 
 
- - program_alias: mini
-   source_code_pkg_path: /opt/case/mini/mini.zip
-   case_serial: 3
-   fuzzer_line_covered_rate: 83.19%
-   fuzzer_function_covered_rate: 90.00%
-   bugs:
-      - name: FPE
-        location: 46
-      - name: heap-use-after-free
-        location: 52
+#  - program_alias: mini
+#    source_code_pkg_path: /opt/case/mini/mini.zip
+#    case_serial: 3
+#    fuzzer_line_covered_rate: 83.19%
+#    fuzzer_function_covered_rate: 90.00%
+#    bugs:
+#       - name: FPE
+#         location: 46
+#       - name: heap-use-after-free
+#         location: 52
 
 
 # - program_alias: cpuinfo

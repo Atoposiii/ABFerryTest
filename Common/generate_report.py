@@ -3,13 +3,15 @@ import requests
 import json
 from lark_oapi.api.sheets.v3 import *
 from datetime import datetime
+from Common.config import Config
 
 # SDK 使用说明: https://github.com/larksuite/oapi-sdk-python#readme
 
 def generate_report(report_data):
+    config = Config.get_yaml("local_tc/lark.yaml")
     # 应用ID和密钥
-    app_id = "cli_a6cded67377d900d"
-    app_secret = "J8NAOwwb36KVnydUtq1SycsKa8eXHzxS"
+    app_id = config["APP_ID"]
+    app_secret = config["APP_SECRET"]
     # 创建client
     client = lark.Client.builder() \
         .app_id(app_id) \
