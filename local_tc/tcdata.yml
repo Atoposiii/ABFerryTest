@@ -34,7 +34,7 @@
 #   bugs:
 
 
- - program_alias: cjson-1.7.15
+- program_alias: cjson-1.7.15
    source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
    case_serial: 2
    fuzzer_line_covered_rate: 44.72%
@@ -42,7 +42,7 @@
    bugs:
 
 
- - program_alias: mini
+- program_alias: mini
    source_code_pkg_path: /opt/case/mini/mini.zip
    case_serial: 3
    fuzzer_line_covered_rate: 83.19%
@@ -52,7 +52,6 @@
         location: 46
       - name: heap-use-after-free
         location: 52
-
 
 - program_alias: cpuinfo
   source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
