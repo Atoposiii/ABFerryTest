@@ -164,21 +164,6 @@ class TestFuzzResultInfo:
             report_data.update({"bug类型": bug_types})
             # ReportStyle.step("BUG数据总览: ", bug_stats)
 
-        with allure.step("step: 断言bug的类型与定位是否一致"):
-            base_bugs = args["bugs"]
-            with assume:
-                test_bugs = None if not test_bugs else test_bugs
-                if base_bugs is not None and test_bugs is not None:
-                    sorted_base_bugs = sorted(base_bugs, key=lambda x: (x['name'], x['location']))
-                    sorted_test_bugs = sorted(test_bugs, key=lambda x: (x['name'], x['location']))
-                    assert sorted_base_bugs == sorted_test_bugs
-                    # ReportStyle.step("bug的类型与定位", test_bugs)
-                else:
-                    assert base_bugs == test_bugs
-                    # ReportStyle.step("bug的类型与定位", None)
-
-    import os
-
     def write_report(self, report_data):
         # print(report_data)
         elements = list(report_data["bug类型"])

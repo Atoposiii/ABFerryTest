@@ -187,6 +187,7 @@ class TestFuzzResultInfo:
             base_bugs = args["bugs"]
             with assume:
                 test_bugs = None if not test_bugs else test_bugs
+                base_bugs = None if not base_bugs else base_bugs
                 if base_bugs is not None and test_bugs is not None:
                     # 按照 'name' 和 'location' 键排序
                     sorted_base_bugs = sorted(base_bugs, key=lambda x: (x['name'], x['location']))

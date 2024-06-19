@@ -50,7 +50,6 @@ class TestFuzzSequence:
     @allure.severity("blocker")
     @allure.description("获取项目列表")
     @allure.title("项目相关接口-项目列表")
-    @pytest.mark.dependency(depends=["test_create_project"])
     # @pytest.mark.skip(reason="暂时不用")
     def test_get_project_id(self):
         print("测试获取项目projectid")
