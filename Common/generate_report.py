@@ -31,7 +31,7 @@ def generate_report(report_data):
     sheet_info = get_sheet(client=client)
     titles = [sheet['title'] for sheet in sheet_info]
     title = datetime.today().strftime('%Y-%m-%d')
-    spreadsheet_token = "GCoLsuawvhPxfdtypTNcATEqnKd"
+    spreadsheet_token = config["SPREADSHEET_TOKEN"]
     # 如果sheet未创建，首先要创建
     sheet_id = None
     if title not in titles:
