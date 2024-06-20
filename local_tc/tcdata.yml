@@ -1,44 +1,52 @@
-#  - program_alias: metis
-#    source_code_pkg_path: /opt/case/metis/metis.zip
-#    case_serial: 1
-#    fuzzer_line_covered_rate: 3.01%
-#    fuzzer_function_covered_rate: 1.81%
-#    bugs:
+# - program_alias: metis
+#   source_code_pkg_path: /opt/case/metis/metis.zip
+#   case_serial: 1
+#   fuzzer_line_covered_rate: 3.01%
+#   fuzzer_function_covered_rate: 1.81%
+#   bugs:
+#
+# - program_alias: cpu_features
+#   source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
+#   case_serial: 1
+#   fuzzer_line_covered_rate: 1.92%
+#   fuzzer_function_covered_rate: 4.00%
+#   bugs:
 
-#  - program_alias: cpu_features
-#    source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
-#    case_serial: 1
-#    fuzzer_line_covered_rate: 1.92%
-#    fuzzer_function_covered_rate: 4.00%
-#    bugs:
+  - program_alias: jsonnet
+    source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+    case_serial: 3
+    fuzzer_line_covered_rate: 20.85%
+    fuzzer_function_covered_rate: 20.00%
+    bugs:
+       - name: stack-buffer-overflow
+         location: 526
+       - name: stack-buffer-overflow
+         location: 532
+       - name: stack-buffer-overflow
+         location: 114
+       - name: stack-buffer-overflow
+         location: 770
+       - name: stack-buffer-overflow
+         location: 612
+       - name: stack-buffer-overflow
+         location: 551
+       - name: stack-buffer-overflow
+         location: 435
+       - name: stack-buffer-overflow
+         location: 557
+       - name: stack-buffer-overflow
+         location: 267
+       - name: stack-buffer-overflow
+         location: 82
 
-#  - program_alias: jsonnet
-#    source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-#    case_serial: 3
-#    fuzzer_line_covered_rate: 20.85%
-#    fuzzer_function_covered_rate: 20.00%
-#    bugs:
-#       - name: stack-buffer-overflow
-#         location: 526
-#       - name: stack-buffer-overflow
-#         location: 532
-#       - name: stack-buffer-overflow
-#         location: 114
-#       - name: stack-buffer-overflow
-#         location: 770
-#       - name: stack-buffer-overflow
-#         location: 612
-#       - name: stack-buffer-overflow
-#         location: 551
-#       - name: stack-buffer-overflow
-#         location: 435
-#       - name: stack-buffer-overflow
-#         location: 557
-#       - name: stack-buffer-overflow
-#         location: 267
-#       - name: stack-buffer-overflow
-#         location: 82
-
+  - program_alias: cpuinfo
+    source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
+    case_serial: 8
+    fuzzer_line_covered_rate: 0.35%
+    fuzzer_function_covered_rate: 0.00%
+    bugs:
+      - name: heap-buffer-overflow
+        location: 534
 # - program_alias: re2
 #   source_code_pkg_path: /opt/case/re2/re2.zip
 #   case_serial: 4
@@ -54,32 +62,111 @@
 #   bugs:
 
 
- - program_alias: cjson-1.7.15
-   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-   case_serial: 2
-   fuzzer_line_covered_rate: 8.15%
-   fuzzer_function_covered_rate: 0.00%
-   bugs:
-
-
- - program_alias: mini
-   source_code_pkg_path: /opt/case/mini/mini.zip
-   case_serial: 3
-   fuzzer_line_covered_rate: 83.19%
-   fuzzer_function_covered_rate: 90.00%
-   bugs:
-      - name: FPE
-        location: 46
-      - name: heap-use-after-free
-        location: 52
-
-
-# - program_alias: cpuinfo
-#   source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
-#   case_serial: 8
-#   fuzzer_line_covered_rate: 0.35%
+# - program_alias: cjson-1.7.15
+#   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+#   case_serial: 2
+#   fuzzer_line_covered_rate: 8.15%
 #   fuzzer_function_covered_rate: 0.00%
 #   bugs:
-#      - name: heap-buffer-overflow
-#        location: 534
+
+
+# - program_alias: mini
+#   source_code_pkg_path: /opt/case/mini/mini.zip
+#   case_serial: 3
+#   fuzzer_line_covered_rate: 83.19%
+#   fuzzer_function_covered_rate: 90.00%
+#   bugs:
+#      - name: FPE
+#        location: 46
+#      - name: heap-use-after-free
+#        location: 52
+
+
+
+
+# - program_alias: metis
+#   source_code_pkg_path: /opt/case/metis/metis.zip
+#   case_serial: 1
+#   fuzzer_line_covered_rate: 3.01%
+#   fuzzer_function_covered_rate: 1.81%
+#   bugs:
+#
+# - program_alias: cpu_features
+#   source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
+#   case_serial: 1
+#   fuzzer_line_covered_rate: 1.92%
+#   fuzzer_function_covered_rate: 4.00%
+#   bugs:
+
+  - program_alias: jsonnet
+    source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+    case_serial: 3
+    fuzzer_line_covered_rate: 20.85%
+    fuzzer_function_covered_rate: 20.00%
+    bugs:
+       - name: stack-buffer-overflow
+         location: 526
+       - name: stack-buffer-overflow
+         location: 532
+       - name: stack-buffer-overflow
+         location: 114
+       - name: stack-buffer-overflow
+         location: 770
+       - name: stack-buffer-overflow
+         location: 612
+       - name: stack-buffer-overflow
+         location: 551
+       - name: stack-buffer-overflow
+         location: 435
+       - name: stack-buffer-overflow
+         location: 557
+       - name: stack-buffer-overflow
+         location: 267
+       - name: stack-buffer-overflow
+         location: 82
+
+  - program_alias: cpuinfo
+    source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
+    case_serial: 8
+    fuzzer_line_covered_rate: 0.35%
+    fuzzer_function_covered_rate: 0.00%
+    bugs:
+      - name: heap-buffer-overflow
+        location: 534
+# - program_alias: re2
+#   source_code_pkg_path: /opt/case/re2/re2.zip
+#   case_serial: 4
+#   fuzzer_line_covered_rate: 75.66%
+#   fuzzer_function_covered_rate: 62.53%
+#   bugs:
+
+# - program_alias: pthreadpool
+#   source_code_pkg_path: /opt/case/pthreadpool/pthreadpool.zip
+#   case_serial: 5
+#   fuzzer_line_covered_rate: 2.33%
+#   fuzzer_function_covered_rate: 5.26%
+#   bugs:
+
+
+# - program_alias: cjson-1.7.15
+#   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+#   case_serial: 2
+#   fuzzer_line_covered_rate: 8.15%
+#   fuzzer_function_covered_rate: 0.00%
+#   bugs:
+
+
+# - program_alias: mini
+#   source_code_pkg_path: /opt/case/mini/mini.zip
+#   case_serial: 3
+#   fuzzer_line_covered_rate: 83.19%
+#   fuzzer_function_covered_rate: 90.00%
+#   bugs:
+#      - name: FPE
+#        location: 46
+#      - name: heap-use-after-free
+#        location: 52
+
+
+
 
