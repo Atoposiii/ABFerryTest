@@ -28,7 +28,7 @@ def generate_report(report_data):
     # 获取创建的表格token
     # spreadsheet_token = response.data.spreadsheet.spreadsheet_token
     # 获取工作表
-    sheet_info = get_sheet(client=client)
+    sheet_info = get_sheet(client=client, spreadsheet_token=config["SPREADSHEET_TOKEN"])
     titles = [sheet['title'] for sheet in sheet_info]
     title = datetime.today().strftime('%Y-%m-%d')
     spreadsheet_token = config["SPREADSHEET_TOKEN"]
@@ -63,10 +63,10 @@ def find_sheet_id_by_title(sheets, title_to_find):
             return sheet['sheet_id']
     return None
 
-def get_sheet(client):
+def get_sheet(client, spreadsheet_token):
     # 构造请求对象
     request: QuerySpreadsheetSheetRequest = QuerySpreadsheetSheetRequest.builder() \
-        .spreadsheet_token("GCoLsuawvhPxfdtypTNcATEqnKd") \
+        .spreadsheet_token(spreadsheet_token) \
         .build()
 
     # 发起请求
