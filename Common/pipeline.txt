@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+    environment {
+        CONDA_HOME = "/home/zl/anaconda3" // Conda安装路径
+        CONDA_ENV_NAME = "auto" // Conda环境名
+    }
+    stages {
+        stage('Prepare Python Environment') {
+            steps {
+                script {
+                    sh '''
+                    export PATH=$CONDA_HOME/bin:$PATH
+                    source $CONDA_HOME/etc/profile.d/conda.sh
+                    conda activate $CONDA_ENV_NAME
+                    # 检查pytest是否已安装，如果未安装则进行安装
+                    if ! pytest --version; then
+                      echo "Pytest not found, installing..."
+                      pip install pytest -i https://pypi.tuna.tsinghua.edu.cn/simple
+                    else
+                      echo "Pytest already installed."
+                    fi
+                    # 检查lark-oapi是否已安装，如果未安装则进行安装
+                   
+                    '''
+                }
+            }
+        }
+        stage('Clone repository') {
+            steps {
+                git(
+                    url: 'git@github.com:Atoposiii/ABFerryTest.git',
+                    branch: 'main',
+                    credentialsId: '3fa77dc3-3d00-425a-9cf7-6b3e392518b4'
+                )
+            }
+        }
+        stage('Run PyTest') {
+            environment {
+                // Jenkins 工作目录下
+                PYTHONPATH = "${WORKSPACE}"
+            }
+            steps {
+                script {
+                     sh '''
+                    export PATH=$CONDA_HOME/bin:$PATH
+                    source $CONDA_HOME/etc/profile.d/conda.sh
+                    conda activate $CONDA_ENV_NAME
+                    pytest -v tcase/test_project.py --alluredir=./allure_results --clean-alluredir || true
+                    pytest -v tcase/test_instance.py -n 2 --alluredir=./allure_results || true
+                    pytest -v tcase/test_get_coverage_bug.py --alluredir=./allure_results || true
+                    pytest -v tcase/test_generate_report.py || true
+                    python Common/lark_utils.py
+                    '''
+                }
+            }
+        }
+        stage('Generate Allure Report') {
+            steps {
+                script {
+                    // 调用Jenkins Allure插件的功能生成报告
+                    allure includeProperties: false, jdk: '', report: 'allure_report', results: [[path: 'allure_results']]
+                }
+            }
+        }
+    }
+    post {
+        always {
+            // 清理环境
+            cleanWs()
+        }
+    }
+}
