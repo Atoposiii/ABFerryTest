@@ -1,6 +1,6 @@
 - program_alias: mini
   source_code_pkg_path: /opt/case/mini/mini.zip
-  case_serial: 1
+  case_serial: 2
   fuzzer_line_covered_rate: 84.62%
   fuzzer_function_covered_rate: 50.00%
   bugs:
