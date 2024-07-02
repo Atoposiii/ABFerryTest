@@ -1,70 +1,70 @@
- - program_alias: mini
-   source_code_pkg_path: /opt/case/mini/mini.zip
-   case_serial: 1
-   fuzzer_line_covered_rate: 84.62%
-   fuzzer_function_covered_rate: 50.00%
-   bugs:
-      - name: FPE
-        location: 46
-      - name: heap-use-after-free
-        location: 52
+- program_alias: mini
+  source_code_pkg_path: /opt/case/mini/mini.zip
+  case_serial: 1
+  fuzzer_line_covered_rate: 84.62%
+  fuzzer_function_covered_rate: 50.00%
+  bugs:
+    - name: FPE
+      location: 46
+    - name: heap-use-after-free
+      location: 52
 
- - program_alias: metis
-   source_code_pkg_path: /opt/case/metis/metis.zip
-   case_serial: 1
-   fuzzer_line_covered_rate: 3.28%
-   fuzzer_function_covered_rate: 1.81%
-   bugs:
+- program_alias: metis
+  source_code_pkg_path: /opt/case/metis/metis.zip
+  case_serial: 1
+  fuzzer_line_covered_rate: 3.28%
+  fuzzer_function_covered_rate: 1.81%
+  bugs:
 
- - program_alias: uriparser
-   source_code_pkg_path: /opt/case/pthreadpool/pthreadpool.zip
-   case_serial: 5
-   fuzzer_line_covered_rate: 5.33%
-   fuzzer_function_covered_rate: 0.00%
-   bugs:
-     - name: SEGV
-       location: 429
-     - name: heap-buffer-overflow
-       location: 429
+- program_alias: uriparser
+  source_code_pkg_path: /opt/case/pthreadpool/pthreadpool.zip
+  case_serial: 5
+  fuzzer_line_covered_rate: 5.33%
+  fuzzer_function_covered_rate: 0.00%
+  bugs:
+    - name: SEGV
+      location: 429
+    - name: heap-buffer-overflow
+      location: 429
 
- - program_alias: cjson-1.7.15
-   source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
-   case_serial: 1
-   fuzzer_line_covered_rate: 20.37%
-   fuzzer_function_covered_rate: 5.36%
-   bugs:
+- program_alias: cjson-1.7.15
+  source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
+  case_serial: 1
+  fuzzer_line_covered_rate: 20.37%
+  fuzzer_function_covered_rate: 5.36%
+  bugs:
 
- - program_alias: cpu_features
-   source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
-   case_serial: 1
-   fuzzer_line_covered_rate: 1.92%
-   fuzzer_function_covered_rate: 4.00%
-   bugs:
+- program_alias: cpu_features
+  source_code_pkg_path: /opt/case/cpu_features/cpu_features.zip
+  case_serial: 1
+  fuzzer_line_covered_rate: 1.92%
+  fuzzer_function_covered_rate: 4.00%
+  bugs:
 
- - program_alias: cpuinfo
-   source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
-   case_serial: 8
-   fuzzer_line_covered_rate: 0.42%
-   fuzzer_function_covered_rate: 0.00%
-   bugs:
+- program_alias: cpuinfo
+  source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
+  case_serial: 8
+  fuzzer_line_covered_rate: 0.42%
+  fuzzer_function_covered_rate: 0.00%
+  bugs:
 
 
- - program_alias: pthreadpool
-   source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
-   case_serial: 8
-   fuzzer_line_covered_rate: 3.20%
-   fuzzer_function_covered_rate: 5.26%
-   bugs:
+- program_alias: pthreadpool
+  source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
+  case_serial: 8
+  fuzzer_line_covered_rate: 3.20%
+  fuzzer_function_covered_rate: 5.26%
+  bugs:
     - name: heap-buffer-overflow
       location: 262
     - name: heap-buffer-overflow
       location: 264
- - program_alias: standard
-   source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
-   case_serial: 8
-   fuzzer_line_covered_rate: 71.71%
-   fuzzer_function_covered_rate: 80.00%
-   bugs:
+- program_alias: standard
+  source_code_pkg_path: /opt/case/cpuinfo/cpuinfo.zip
+  case_serial: 8
+  fuzzer_line_covered_rate: 71.71%
+  fuzzer_function_covered_rate: 80.00%
+  bugs:
     - name: heap-use-after-free
       location: 39
     - name: stack-buffer-overflow
@@ -80,125 +80,123 @@
     - name: SEGV
       location: 27
 
- - program_alias: re2
-   source_code_pkg_path: /opt/case/re2/re2.zip
-   case_serial: 4
-   fuzzer_line_covered_rate: 12.30%
-   fuzzer_function_covered_rate: 6.07%
-   bugs:
-        - name: SEGV
-          location: 753
-        - name: SEGV
-          location: 482
-        - name: SEGV
-          location: 497
+- program_alias: re2
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 4
+  fuzzer_line_covered_rate: 12.30%
+  fuzzer_function_covered_rate: 6.07%
+  bugs:
+    - name: SEGV
+      location: 753
+    - name: SEGV
+      location: 482
+    - name: SEGV
+      location: 497
 
- - program_alias: puffin
-   source_code_pkg_path: /opt/case/re2/re2.zip
-   case_serial: 4
-   fuzzer_line_covered_rate: 2.28%
-   fuzzer_function_covered_rate: 0.76%
-   bugs:
-     - name: SEGV
-       location: 54
+- program_alias: puffin
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 4
+  fuzzer_line_covered_rate: 2.28%
+  fuzzer_function_covered_rate: 0.76%
+  bugs:
+    - name: SEGV
+      location: 54
 
- - program_alias: openh264
-   source_code_pkg_path: /opt/case/re2/re2.zip
-   case_serial: 4
-   fuzzer_line_covered_rate: 9.88%
-   fuzzer_function_covered_rate: 6.69%
-   bugs:
+- program_alias: openh264
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 4
+  fuzzer_line_covered_rate: 9.88%
+  fuzzer_function_covered_rate: 6.69%
+  bugs:
 
- - program_alias: wabt
-   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-   case_serial: 2
-   fuzzer_line_covered_rate: 4.04%
-   fuzzer_function_covered_rate: 2.79%
-   bugs:
-     - name: heap-buffer-overflow
-       location: 152
-     - name: heap-buffer-overflow
-       location: 179
-     - name: SEGV
-       location: 175
-     - name: SEGV
-       location: 127
-     - name: SEGV
-       location: 152
+- program_alias: wabt
+  source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+  case_serial: 2
+  fuzzer_line_covered_rate: 4.04%
+  fuzzer_function_covered_rate: 2.79%
+  bugs:
+    - name: heap-buffer-overflow
+      location: 152
+    - name: heap-buffer-overflow
+      location: 179
+    - name: SEGV
+      location: 175
+    - name: SEGV
+      location: 127
+    - name: SEGV
+      location: 152
 
- - program_alias: assimp
-   source_code_pkg_path: /opt/case/re2/re2.zip
-   case_serial: 4
-   fuzzer_line_covered_rate: 4.10%
-   fuzzer_function_covered_rate: 2.02%
-   bugs:
+- program_alias: assimp
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 4
+  fuzzer_line_covered_rate: 4.10%
+  fuzzer_function_covered_rate: 2.02%
+  bugs:
 
- - program_alias: leveldb
-   source_code_pkg_path: /opt/case/re2/re2.zip
-   case_serial: 4
-   fuzzer_line_covered_rate: 2.67%
-   fuzzer_function_covered_rate: 1.49%
-   bugs:
-
-
- - program_alias: cjson-1.7.15
-   source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-   case_serial: 2
-   fuzzer_line_covered_rate: 8.15%
-   fuzzer_function_covered_rate: 0.00%
-   bugs:
-
- - program_alias: bsdiff
-   source_code_pkg_path: /opt/case/re2/re2.zip
-   case_serial: 4
-   fuzzer_line_covered_rate: 7.58%
-   fuzzer_function_covered_rate: 0.00%
-   bugs:
-     - name: global-buffer-overflow
-       location: 53
-     - name: stack-buffer-overflow
-       location: 53
-
- - program_alias: sfntly
-   source_code_pkg_path: /opt/case/re2/re2.zip
-   case_serial: 4
-   fuzzer_line_covered_rate: 0.26%
-   fuzzer_function_covered_rate: 0.00%
-   bugs:
-     - name: heap-buffer-overflow
-       location: 49
-     - name: SEGV
-       location: 53
-     - name: SEGV
-       location: 26
-     - name: SEGV
-       location: 287
+- program_alias: leveldb
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 4
+  fuzzer_line_covered_rate: 2.67%
+  fuzzer_function_covered_rate: 1.49%
+  bugs:
 
 
-  - program_alias: jsonnet
-    source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
-    case_serial: 3
-    fuzzer_line_covered_rate: 20.54%
-    fuzzer_function_covered_rate: 20.00%
-    bugs:
+- program_alias: cjson-1.7.15
+  source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+  case_serial: 2
+  fuzzer_line_covered_rate: 8.15%
+  fuzzer_function_covered_rate: 0.00%
+  bugs:
 
-       - name: stack-buffer-overflow
-         location: 526
-       - name: stack-buffer-overflow
-         location: 532
-       - name: stack-buffer-overflow
-         location: 114
-       - name: stack-buffer-overflow
-         location: 770
-       - name: stack-buffer-overflow
-         location: 612
-       - name: stack-buffer-overflow
-         location: 551
-       - name: stack-buffer-overflow
-         location: 435
-       - name: stack-buffer-overflow
-         location: 557
-       - name: stack-buffer-overflow
-         location: 267
-       - name: stack-buffer-overflow
-         location: 82
+- program_alias: bsdiff
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 4
+  fuzzer_line_covered_rate: 7.58%
+  fuzzer_function_covered_rate: 0.00%
+  bugs:
+    - name: global-buffer-overflow
+      location: 53
+    - name: stack-buffer-overflow
+      location: 53
+
+- program_alias: sfntly
+  source_code_pkg_path: /opt/case/re2/re2.zip
+  case_serial: 4
+  fuzzer_line_covered_rate: 0.26%
+  fuzzer_function_covered_rate: 0.00%
+  bugs:
+    - name: heap-buffer-overflow
+      location: 49
+    - name: SEGV
+      location: 53
+    - name: SEGV
+      location: 26
+    - name: SEGV
+      location: 287
+
+- program_alias: jsonnet
+  source_code_pkg_path: /opt/case/jsonnet/jsonnet.zip
+  case_serial: 3
+  fuzzer_line_covered_rate: 20.54%
+  fuzzer_function_covered_rate: 20.00%
+  bugs:
+    - name: stack-buffer-overflow
+      location: 526
+    - name: stack-buffer-overflow
+      location: 532
+    - name: stack-buffer-overflow
+      location: 114
+    - name: stack-buffer-overflow
+      location: 770
+    - name: stack-buffer-overflow
+      location: 612
+    - name: stack-buffer-overflow
+      location: 551
+    - name: stack-buffer-overflow
+      location: 435
+    - name: stack-buffer-overflow
+      location: 557
+    - name: stack-buffer-overflow
+      location: 267
+    - name: stack-buffer-overflow
+      location: 82
