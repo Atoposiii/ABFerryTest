@@ -11,7 +11,6 @@ http_client = HttpRequest()
 
 test_cases = Config.get_yaml(Config.get_case_data_dir() + Config.get_case_data_file())
 
-report_data = {}
 
 @allure.feature("ABFerry测试")
 class TestFuzzResultInfo:
@@ -27,7 +26,6 @@ class TestFuzzResultInfo:
             project_info = Config.get_cpp_project_info()
             for project in project_info:
                 name = project["name"][:-10]
-                report_data["用例名"] = name
                 if name == args["program_alias"]:
                     instance_id = project["instance_id"]
                     ReportStyle.step("测试用例id: ", instance_id)
@@ -36,7 +34,7 @@ class TestFuzzResultInfo:
         url = Config.TestEnv + "/api/structure/instanceCoverages"
         params = {
             "instanceId": instance_id,
-            "type": "project"
+            "type": "instance"
         }
         http_client.send_request(data_type="params", method="get", url=url, data=params)
         resp = http_client.response.json()
@@ -75,21 +73,12 @@ class TestFuzzResultInfo:
                     }
             ReportStyle.step("覆盖率: ", stats)
 
-            report_data["代码行"] = stats["gtest行覆盖Total"]
-            report_data["函数个数"] = stats["gtest函数覆盖Total"]
-
-            # 将统计结果合并到报告数据中
-            report_data.update(stats)
-
         test_gtest_line_covered_rate = float(stats["gtest行覆盖率"].split("%")[0])
         test_gtest_function_covered_rate = float(stats["gtest函数覆盖率"].split("%")[0])
         test_fuzzer_line_covered_rate = float(stats["fuzzer行覆盖率"].split("%")[0])
         test_fuzzer_function_covered_rate = float(stats["fuzzer函数覆盖率"].split("%")[0])
         base_fuzzer_line_covered_rate = float(args.get("fuzzer_line_covered_rate").split("%")[0])
         base_fuzzer_function_covered_rate = float(args.get("fuzzer_function_covered_rate").split("%")[0])
-
-        report_data["行覆盖提升率"] = "{:.2f}%".format(((test_fuzzer_line_covered_rate - test_gtest_line_covered_rate) / test_gtest_line_covered_rate)*100)
-        report_data["函数覆盖提升率"] = "{:.2f}%".format(((test_fuzzer_function_covered_rate - test_gtest_function_covered_rate) / test_gtest_function_covered_rate)*100)
 
         with ((allure.step("step: 断言函数覆盖率是否正常"))):
             with assume:
@@ -178,9 +167,6 @@ class TestFuzzResultInfo:
 
             # 更新bug的类型数
             bug_stats["bug类型"] = len(bug_types)
-            # 将统计结果合并到报告数据中
-            report_data.update(bug_stats)
-            report_data.update({"bug类型": bug_types})
             ReportStyle.step("BUG数据总览: ", bug_stats)
 
         with allure.step("step: 断言bug的类型与定位是否一致"):

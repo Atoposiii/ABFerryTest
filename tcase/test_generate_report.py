@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 import pytest
 import allure
 from pytest_assume.plugin import assume
@@ -34,7 +35,7 @@ class TestFuzzResultInfo:
         url = Config.TestEnv + "/api/structure/instanceCoverages"
         params = {
             "instanceId": instance_id,
-            "type": "project"
+            "type": "instance"
         }
         http_client.send_request(data_type="params", method="get", url=url, data=params)
         resp = http_client.response.json()
@@ -87,18 +88,19 @@ class TestFuzzResultInfo:
         report_data["函数覆盖提升率"] = "{:.2f}%".format(((
                                                                       test_fuzzer_function_covered_rate - test_gtest_function_covered_rate) / test_gtest_function_covered_rate) * 100)
 
-        with ((allure.step("step: 断言函数覆盖率是否正常"))):
-            with assume:
-                assert test_fuzzer_function_covered_rate >= base_fuzzer_function_covered_rate \
-                       or test_fuzzer_function_covered_rate > (base_fuzzer_function_covered_rate - 3)
-
-        with allure.step("step: 断言行覆盖率是否正常"):
-            with assume:
-                assert test_fuzzer_line_covered_rate >= base_fuzzer_line_covered_rate \
-                       or test_fuzzer_line_covered_rate > (base_fuzzer_line_covered_rate - 3)
+        # with ((allure.step("step: 断言函数覆盖率是否正常"))):
+        #     with assume:
+        #         assert test_fuzzer_function_covered_rate >= base_fuzzer_function_covered_rate \
+        #                or test_fuzzer_function_covered_rate > (base_fuzzer_function_covered_rate - 3)
+        #
+        # with allure.step("step: 断言行覆盖率是否正常"):
+        #     with assume:
+        #         assert test_fuzzer_line_covered_rate >= base_fuzzer_line_covered_rate \
+        #                or test_fuzzer_line_covered_rate > (base_fuzzer_line_covered_rate - 3)
 
     def gather_bugs_info(self, args, report_data):
         instance_id = None
+        name = None
         with allure.step("step: 读取yaml文件，获取测试用例id"):
             project_info = Config.get_cpp_project_info()
             for project in project_info:
@@ -130,7 +132,7 @@ class TestFuzzResultInfo:
                 }
             # ReportStyle.step("BUG列表: ", stats)
 
-        test_bugs = []
+
         with allure.step("step: 统计BUG数量"):
             bug_count = len(bugs)
             bug_stats = {
@@ -139,43 +141,78 @@ class TestFuzzResultInfo:
                 "用例bug数": 0,
                 "源码bug数": 0,
             }
-            bug_types = set()
+            test_bugs = []
 
             for item in bugs:
-                bug_name = item["bugName"]
-                source_line = item.get("sourceLine")
-
                 level = item["level"]
-                bug_types.add(bug_name)
-
                 if level == "0":
                     bug_stats["用例bug数"] += 1
                 elif level == "1":
                     bug_stats["源码bug数"] += 1
+                    bug_name = item["bugName"]
+                    source_line = item.get("sourceLine")
+                    source_file_path = item.get("sourceFilePath").split('/')[-2:]
+                    source_file_path = '/'.join(source_file_path[-2:])
+                    info = f"{source_file_path}: {source_line}"
                     test_bugs.append(
                         {
-                            "name": bug_name,
-                            "location": source_line
+                            "instance_name": name,
+                            "bug_id": "",
+                            "bug_name": bug_name,
+                            "info": info
                         }
                     )
-
-            bug_stats["bug类型"] = len(bug_types)
             report_data.update(bug_stats)
-            report_data.update({"bug类型": bug_types})
-            # ReportStyle.step("BUG数据总览: ", bug_stats)
+            report_data["bugs"] = test_bugs
+
+
+    def gather_run_time(self, args, report_data):
+        projects = Config.get_cpp_project_info()
+        proj_id = ""
+        proj_name = ""
+        name = ""
+        for project in projects:
+            proj_name = project["name"]
+            name = proj_name[:-10]
+            if args["program_alias"] == name:
+                proj_id = project["id"]
+                break
+        url = Config.TestEnv + "/api/instance/getInstanceList"
+        params = {'projectId': proj_id}
+        http_client.send_request(data_type="params", method="get", url=url, data=params)
+        resp = http_client.response.json()
+        # 定义时间格式
+        time_format = "%Y-%m-%d %H:%M:%S"
+        # 创建时间
+        create_time_str = resp["data"][0]["createTime"]
+        print(create_time_str)
+        # 更新时间
+        update_time_str = resp["data"][0]["updateTime"]
+        print(update_time_str)
+        # 将字符串转换为datetime对象
+        create_time = datetime.strptime(create_time_str, time_format)
+        update_time = datetime.strptime(update_time_str, time_format)
+        # 计算时间差
+        time_difference = update_time - create_time
+        # 将时间差转换为秒
+        run_duration_seconds = int(time_difference.total_seconds())
+        # 将秒转换为分钟
+        run_duration_minutes = run_duration_seconds / 60
+        formatted_duration = f"{run_duration_minutes:.2f}"
+        report_data["运行时长"] = formatted_duration
+        print("运行时长为 {} 分钟".format(formatted_duration))
 
     def write_report(self, report_data):
-        # print(report_data)
-        elements = list(report_data["bug类型"])
-        separator = ', '
-        result_string = separator.join(elements)
-        report = [report_data["用例名"], report_data["代码行"], report_data["函数个数"], report_data["gtest行覆盖"],
-                report_data["gtest函数覆盖"], report_data["fuzzer行覆盖"], report_data["fuzzer函数覆盖"],
-                report_data["gtest行覆盖率"], report_data["gtest函数覆盖率"], report_data["fuzzer行覆盖率"], report_data["fuzzer函数覆盖率"],
-                report_data["行覆盖提升率"], report_data["函数覆盖提升率"], report_data["bug总数"], result_string, report_data["用例bug数"],
-                report_data["源码bug数"]]
+        print(report_data)
+        report = [report_data["用例名"], "", report_data["行覆盖提升率"], report_data["函数覆盖提升率"],
+                  report_data["源码bug数"], report_data["运行时长"], report_data["代码行"], report_data["函数个数"],
+                  report_data["gtest行覆盖"], report_data["gtest行覆盖率"], report_data["gtest函数覆盖"],
+                  report_data["gtest函数覆盖率"], report_data["fuzzer行覆盖"], report_data["fuzzer行覆盖率"],
+                  report_data["fuzzer函数覆盖"], report_data["fuzzer函数覆盖率"], report_data["bug总数"]
+                  ]
         print(report)
-        generate_report(report)
+        report_bugs = report_data['bugs']
+        generate_report(report, report_bugs)
         # import csv
         # from datetime import datetime
         # today = datetime.today().strftime('%Y-%m-%d')
@@ -198,11 +235,9 @@ class TestFuzzResultInfo:
     def test_run_all(self, args, report_data):
         self.gather_coverage_info(args, report_data)
         self.gather_bugs_info(args, report_data)
+        self.gather_run_time(args, report_data)
         self.write_report(report_data)
 
 
 if __name__ == "__main__":
     pytest.main(["-v", __file__])
-
-
-

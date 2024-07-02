@@ -5,9 +5,10 @@ from lark_oapi.api.sheets.v3 import *
 from datetime import datetime
 from Common.config import Config
 
+
 # SDK 使用说明: https://github.com/larksuite/oapi-sdk-python#readme
 
-def generate_report(report_data):
+def generate_report(report_data, report_bugs):
     config = Config.get_yaml("local_tc/lark.yaml")
     # 应用ID和密钥
     app_id = config["APP_ID"]
@@ -32,27 +33,50 @@ def generate_report(report_data):
     titles = [sheet['title'] for sheet in sheet_info]
     title = datetime.today().strftime('%Y-%m-%d')
     spreadsheet_token = config["SPREADSHEET_TOKEN"]
+    title_coverage = title + "-coverage"
+    title_bug = title + "-bugs"
+    # -------------------------------------------
     # 如果sheet未创建，首先要创建
-    sheet_id = None
-    if title not in titles:
-        sheet_id = sheets_update(spreadsheet_token, app_access_token, title)
+    sheet_coverage_id = None
+    if title_coverage not in titles:
+        sheet_coverage_id = sheets_update(spreadsheet_token, app_access_token, title_coverage)
     else:
-        sheet_id = find_sheet_id_by_title(sheet_info, title)
-    # 获取sheetId
-    # sheet_id = get_sheet_id(spreadsheet_token, app_access_token)
-    if not sheet_id:
+        sheet_coverage_id = find_sheet_id_by_title(sheet_info, title_coverage)
+    # 写用例覆盖率信息
+    if not sheet_coverage_id:
         lark.logger.error("获取sheetId失败")
         return
     # 添加表头信息
-    add_values_to_sheet(spreadsheet_token, app_access_token, f"{sheet_id}!A1:Q1",
-                        [["用例名", "代码行", "函数个数", "gtest行覆盖",
-                          "gtest函数覆盖", "fuzzer行覆盖", "fuzzer函数覆盖",
-                          "gtest行覆盖率", "gtest函数覆盖率", "fuzzer行覆盖率", "fuzzer函数覆盖率",
-                          "行覆盖提升率", "函数覆盖提升率", "bug总数", "bug类型", "用例bug数",
-                          "源码bug数"]])
+    add_values_to_sheet(spreadsheet_token, app_access_token, f"{sheet_coverage_id}!A1:Q1",
+                        [["用例名", "测试套件", "行覆盖提升率", "函数覆盖提升率",
+                          "源码bug数", "运行时长", "代码行", "函数个数", "gtest行覆盖",
+                          "gtest行覆盖率", "gtest函数覆盖", "gtest函数覆盖率", "fuzzer行覆盖", "fuzzer行覆盖率",
+                          "fuzzer函数覆盖", "fuzzer函数覆盖率", "bug数"
+                          ]])
     # 添加数据信息
-    append_to_sheet(spreadsheet_token, app_access_token, f"{sheet_id}!A1:Q1",
+    append_to_sheet(spreadsheet_token, app_access_token, f"{sheet_coverage_id}!A1:Q1",
                     [report_data])
+
+    sheet_bug_id = None
+    if title_bug not in titles:
+        sheet_bug_id = sheets_update(spreadsheet_token, app_access_token, title_bug)
+    else:
+        sheet_bug_id = find_sheet_id_by_title(sheet_info, title_bug)
+    # -------------------------------------------
+    # 写bug详情信息
+    if not sheet_bug_id:
+        lark.logger.error("获取sheetId失败")
+        return
+    # 添加表头信息
+    add_values_to_sheet(spreadsheet_token, app_access_token, f"{sheet_bug_id}!A1:D1",
+                        [["用例名", "BUG编号", "Crash bugs", "BUG摘要"]])
+    # 添加数据信息
+    for bug in report_bugs:
+        values_list = list(bug.values())
+        append_to_sheet(spreadsheet_token, app_access_token, f"{sheet_bug_id}!A1:D1",
+                        [values_list])
+
+
 
 def find_sheet_id_by_title(sheets, title_to_find):
     # 遍历sheets列表
@@ -62,6 +86,7 @@ def find_sheet_id_by_title(sheets, title_to_find):
             # 如果匹配，返回对应的sheet_id
             return sheet['sheet_id']
     return None
+
 
 def get_sheet(client, spreadsheet_token):
     # 构造请求对象
@@ -217,7 +242,6 @@ def print_http_request_details(response):
 
 
 if __name__ == "__main__":
-    report_data = ['mini', 113, 10, 52, 6, 96, 9, '46.02%', '60.00%', '84.96%', '90.00%', '84.62%', '50.00%', 2,
-                   'FPE, heap-use-after-free', 0, 2]
+    report_data = ['assimp', '', '4.17%', '1.94%', 0, '415.50', 144533, 11367, 64077, '44.33%', 3759, '33.07%', 66742, '46.18%', 3832, '33.71%', 0]
 
-    generate_report(report_data)
+    generate_report(report_data, None)
